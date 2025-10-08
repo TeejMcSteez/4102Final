@@ -17,6 +17,12 @@ To ensure setup run . . .
 swift run
 ```
 
+## Setup
+
+To run setup.sh first make it an executable on the machine, `sudo chmod +x setup.sh`
+
+Then simply `sudo ./setup.sh` and this should one shot update, install curl and gpg, curl swift, unpackage it, runs it's install script, and then download the recommended packages after swift's setup.
+
 ## Notes (TJ)
 
 I have to swift run and swift build in a WSL instance as the Windows install does not work for me.
