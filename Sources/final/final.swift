@@ -3,14 +3,14 @@
  * 
 */
 import Glibc
-
+// Basic HTTP response object taking a body and argument
 struct Response {
     var body: String
     var header: String
 }
 
 // Unsingned 16 bit integer
-func run(port: UInt16 = 8080) {
+func run(port: UInt16 = 8080) throws {
     // Signed 32 bit integer
     let s = socket(AF_INET, Int32(SOCK_STREAM.rawValue), 0)
 
@@ -88,4 +88,8 @@ func run(port: UInt16 = 8080) {
     }
 }
 
-run();
+do {
+    try run()
+} catch {
+    print("Error: \(error)")
+}

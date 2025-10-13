@@ -50,4 +50,7 @@ Then simply `sudo ./setup.sh` and this should one shot update, install curl and 
 
 Exception Handling or Concurrency
 
-1. ?
+1. Basic error handling with do-catch
+    1. Run states that it can throw an error
+    2. do { try `expression` } will try to run the expression
+    3. catch can handle the error gracefully much like Javascript and Java
