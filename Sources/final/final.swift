@@ -5,7 +5,9 @@
 import Glibc
 // Basic HTTP response object taking a body and argument
 struct Response {
-    var body: String
+    // body is optional, meaning is can be nil or a valid string
+    // Docs: https://developer.apple.com/documentation/swift/optional
+    var body: String?
     var header: String
 }
 
@@ -63,9 +65,9 @@ func run(port: UInt16 = 8080) throws {
 
         let body = "{ \"message\": \"Hello from swift http!\", \"response\": \"success\" }"
         let header = "HTTP/1.1 200 ok\r\nContent-Type: application/json\r\nContent-Length: \(body.utf8.count)\r\nConnection: close\r\n\r\n"
-
+        // Crafting Response struct
         let res = Response(
-            body: body, 
+            body: body,
             header: header
         )
 
@@ -76,7 +78,7 @@ func run(port: UInt16 = 8080) throws {
             // https://man7.org/linux/man-pages/man2/write.2.html
             write(c, $0, strlen($0)) 
         }
-        _ = res.body.withCString {
+        _ = (res.body ?? "{\"error\": \"Blank Body\"}").withCString {
             write(c, $0, strlen($0))
         }
 
