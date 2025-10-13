@@ -27,7 +27,9 @@ Then simply `sudo ./setup.sh` and this should one shot update, install curl and 
 
 4 Data Types With 2 Methods
 
-1. ?
+1. Optional Types
+    1. init in struct
+    2. nullish coalesce on write, if their is a body writes that otherwise writes `error: blank body`
 2. Integer (UInt16 & UInt32)
     1. init for different types of integers (UInt32/UInt16)
     2. integer.bigEndian
