@@ -43,7 +43,7 @@ Then simply `sudo ./setup.sh` and this should one shot update, install curl and 
 2 Major Data Structures & 2 Major Control Structures
 
 1. MemoryLayout
-2. ?
+2. Struct (Response Struct)
 
 1. While loop
 2. Closures

@@ -4,6 +4,11 @@
 */
 import Glibc
 
+struct Response {
+    var body: String
+    var header: String
+}
+
 // Unsingned 16 bit integer
 func run(port: UInt16 = 8080) {
     // Signed 32 bit integer
@@ -60,14 +65,19 @@ func run(port: UInt16 = 8080) {
         let body = "{ \"message\": \"Hello from swift http!\", \"response\": \"success\" }"
         let header = "HTTP/1.1 200 ok\r\nContent-Type: application/json\r\nContent-Length: \(body.utf8.count)\r\nConnecction: close\r\n\r\n"
 
+        let res = Response(
+            body: body, 
+            header: header
+        )
+
         // withCString converts Swift string to null-terminated string 
         // https://developer.apple.com/documentation/swift/string/withcstring(_:)
-        _ = header.withCString {
+        _ = res.header.withCString {
             // Write simple writes out to a file descriptor
             // https://man7.org/linux/man-pages/man2/write.2.html
             write(c, $0, strlen($0)) 
         }
-        _ = body.withCString {
+        _ = res.body.withCString {
             write(c, $0, strlen($0))
         }
 
