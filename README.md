@@ -27,13 +27,11 @@ Then simply `sudo ./setup.sh` and this should one shot update, install curl and 
 
 4 Data Types With 2 Methods
 
-1. `port: UInt16 = 8080`
-    1. init
-    2. ?
-2.  `Int32(SOCK_STREAM.rawValue)`
-    1. init
-    2. ?
-3. body & header string
+1. ?
+2. Integer (UInt16 & UInt32)
+    1. init for different types of integers (UInt32/UInt16)
+    2. integer.bigEndian
+3. String (body & header)
     1. withCString
     2. `(body.utf8.count)`
 4. Pointer -> `withUnsafePointer(to: &addr)`
@@ -42,11 +40,13 @@ Then simply `sudo ./setup.sh` and this should one shot update, install curl and 
 
 2 Major Data Structures & 2 Major Control Structures
 
-1. MemoryLayout
+Data Structures:
+1. Using C Union/Struct (addr)
 2. Struct (Response Struct)
 
+Control Structures:
 1. While loop
-2. Closures
+2. Continue
 
 Exception Handling or Concurrency
 
