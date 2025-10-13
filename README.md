@@ -23,10 +23,31 @@ To run setup.sh first make it an executable on the machine, `sudo chmod +x setup
 
 Then simply `sudo ./setup.sh` and this should one shot update, install curl and gpg, curl swift, unpackage it, runs it's install script, and then download the recommended packages after swift's setup.
 
-## Notes (TJ)
+## TODO
 
-I have to swift run and swift build in a WSL instance as the Windows install does not work for me.
+4 Data Types With 2 Methods
 
-Though we are building for Linux so I assume it won't be that big of a deal. If your are on Windows I recommend to use a WSL Linux distribution to compile to run Swift programs.
+1. `port: UInt16 = 8080`
+    1. init
+    2. ?
+2.  `Int32(SOCK_STREAM.rawValue)`
+    1. init
+    2. ?
+3. body & header string
+    1. withCString
+    2. `(body.utf8.count)`
+4. Pointer -> `withUnsafePointer(to: &addr)`
+    1. withUnsafePointer
+    2. withMemoryRebound
 
-[WSL Docs](https://learn.microsoft.com/en-us/windows/wsl/install)
+2 Major Data Structures & 2 Major Control Structures
+
+1. MemoryLayout
+2. ?
+
+1. While loop
+2. Closures
+
+Exception Handling or Concurrency
+
+1. ?
