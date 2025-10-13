@@ -12,13 +12,14 @@ struct Response {
 // Unsingned 16 bit integer
 func run(port: UInt16 = 8080) throws {
     // Signed 32 bit integer
+    // Docs: https://man7.org/linux/man-pages/man2/socket.2.html
     let s = socket(AF_INET, Int32(SOCK_STREAM.rawValue), 0)
 
     var addr = sockaddr_in()
     // Mapping address values 
     addr.sin_family = sa_family_t(AF_INET)
 
-    // Numbers are converted to bigEndian as that is network byte order
+    // Numbers are converted to big Endian as that is network byte order
     // https://developer.apple.com/documentation/swift/uint32/bigendian
     // Help From: https://forums.swift.org/t/basic-http-client-from-scratch/67663
     addr.sin_port = in_port_t(port.bigEndian)
@@ -30,8 +31,6 @@ func run(port: UInt16 = 8080) throws {
         // Takes a typed buffer and returns a value if any
         // Docs: https://developer.apple.com/documentation/swift/unsafebufferpointer/withmemoryrebound(to:_:)
         $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-            
-
             // https://man7.org/linux/man-pages/man2/bind.2.html
             // mapping it to a memory layout with size and then casting that to the socklen_t type
             _ = bind(
@@ -63,7 +62,7 @@ func run(port: UInt16 = 8080) throws {
         if c < 0 { continue }
 
         let body = "{ \"message\": \"Hello from swift http!\", \"response\": \"success\" }"
-        let header = "HTTP/1.1 200 ok\r\nContent-Type: application/json\r\nContent-Length: \(body.utf8.count)\r\nConnecction: close\r\n\r\n"
+        let header = "HTTP/1.1 200 ok\r\nContent-Type: application/json\r\nContent-Length: \(body.utf8.count)\r\nConnection: close\r\n\r\n"
 
         let res = Response(
             body: body, 
