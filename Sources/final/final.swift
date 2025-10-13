@@ -6,7 +6,7 @@ import Glibc
 
 // Unsingned 16 bit integer
 func run(port: UInt16 = 8080) {
-    // Unsingned 32 bit integer
+    // Signed 32 bit integer
     let s = socket(AF_INET, Int32(SOCK_STREAM.rawValue), 0)
 
     var addr = sockaddr_in()
