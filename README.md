@@ -23,10 +23,46 @@ To run setup.sh first make it an executable on the machine, `sudo chmod +x setup
 
 Then simply `sudo ./setup.sh` and this should one shot update, install curl and gpg, curl swift, unpackage it, runs it's install script, and then download the recommended packages after swift's setup.
 
-## Notes (TJ)
+## Current Setup
 
-I have to swift run and swift build in a WSL instance as the Windows install does not work for me.
+4 Data Types With 2 Methods
 
-Though we are building for Linux so I assume it won't be that big of a deal. If your are on Windows I recommend to use a WSL Linux distribution to compile to run Swift programs.
+1. Optional Types
+    1. init in struct
+    2. nullish coalesce on write, if their is a body writes that otherwise writes `error: blank body`
+2. Integer (UInt16 & UInt32)
+    1. init for different types of integers (UInt32/UInt16)
+    2. integer.bigEndian
+3. String (body & header)
+    1. withCString
+    2. `(body.utf8.count)`
+4. Pointer -> `withUnsafePointer(to: &addr)`
+    1. withUnsafePointer
+    2. withMemoryRebound
 
-[WSL Docs](https://learn.microsoft.com/en-us/windows/wsl/install)
+2 Major Data Structures & 2 Major Control Structures
+
+Data Structures:
+1. Using C Union/Struct (addr)
+2. Struct (Response Struct)
+
+Control Structures:
+1. While loop
+2. Continue
+
+Exception Handling or Concurrency
+
+1. Basic error handling with do-catch
+    1. Run states that it can throw an error
+    2. do { try `expression` } will try to run the expression
+    3. catch can handle the error gracefully much like Javascript and Java
+
+## TODO
+
+### Add Use Cases
+
+1. Allow serving JSON
+2. Allow serving HTML
+3. Max request\s test
+4. Send Images (multipart\encoded) (optional: w\ chunking)
+5. Health check endpoint (/health = 200)
