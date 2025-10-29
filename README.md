@@ -23,7 +23,7 @@ To run setup.sh first make it an executable on the machine, `sudo chmod +x setup
 
 Then simply `sudo ./setup.sh` and this should one shot update, install curl and gpg, curl swift, unpackage it, runs it's install script, and then download the recommended packages after swift's setup.
 
-## TODO
+## Current Setup
 
 4 Data Types With 2 Methods
 
@@ -56,3 +56,13 @@ Exception Handling or Concurrency
     1. Run states that it can throw an error
     2. do { try `expression` } will try to run the expression
     3. catch can handle the error gracefully much like Javascript and Java
+
+## TODO
+
+### Add Use Cases
+
+1. Allow serving JSON
+2. Allow serving HTML
+3. Max request\s test
+4. Send Images (multipart\encoded) (optional: w\ chunking)
+5. Health check endpoint (/health = 200)
