@@ -56,13 +56,3 @@ Exception Handling or Concurrency
     1. Run states that it can throw an error
     2. do { try `expression` } will try to run the expression
     3. catch can handle the error gracefully much like Javascript and Java
-
-## TODO
-
-### Add Use Cases
-
-1. Allow serving JSON
-2. Allow serving HTML
-3. Max request\s test
-4. Send Images (multipart\encoded) (optional: w\ chunking)
-5. Health check endpoint (/health = 200)
