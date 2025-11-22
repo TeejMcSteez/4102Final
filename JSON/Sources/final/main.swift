@@ -3,12 +3,35 @@
  * 
 */
 import Glibc
+import Foundation
 // Basic HTTP response object taking a body and argument
 struct Response {
     // body is optional, meaning is can be nil or a valid string
     // Docs: https://developer.apple.com/documentation/swift/optional
     var body: String?
     var header: String
+}
+
+/*
+For reloading and curl to work one must drain the request headers from the client before sending the response
+*/
+func drainRequest(from fd: Int32) {
+    var buffer = [UInt8](repeating: 0, count: 1024)
+    var received = ""
+
+    while true {
+        let n = read(fd, &buffer, buffer.count)
+        if n <= 0 { break }
+
+        if let chunk = String(bytes: buffer[0..<n], encoding: .utf8) {
+            received += chunk
+            if received.contains("\r\n\r\n") {
+                break // EOF
+            }
+        } else {
+            break // Non-UTF8, Bail
+        }
+    }
 }
 
 // Unsingned 16 bit integer
@@ -62,6 +85,8 @@ func run(port: UInt16 = 8080) throws {
         let c = accept(s, nil, nil);
 
         if c < 0 { continue }
+
+        drainRequest(from : c)
         
         let body = "{ \"message\": \"Hello from swift http!\", \"response\": \"success\" }"
         let header = "HTTP/1.1 200 ok\r\nContent-Type: application/json\r\nContent-Length: \(body.utf8.count)\r\nConnection: close\r\n\r\n"
