@@ -4,13 +4,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "final",
+    name: "http",
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .testTarget(name: "main"),
+        .testTarget(name: "httpTest"),
         .executableTarget(
-            name: "final",
+            name: "http",
             resources: [
                 .copy("index.html")
             ]
