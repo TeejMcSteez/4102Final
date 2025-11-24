@@ -51,7 +51,7 @@ func loadIndexHTML() -> String? {
 }
 
 // Unsingned 16 bit integer
-func run(port: UInt16 = 8080) throws {
+func run(port: UInt16 = 8090) throws {
     // Signed 32 bit integer
     // Docs: https://man7.org/linux/man-pages/man2/socket.2.html
     let s = socket(AF_INET, Int32(SOCK_STREAM.rawValue), 0)

@@ -5,7 +5,7 @@ import Testing
 
 @Test
 func testServerIsAvailable() async throws {
-    guard let url = URL(string: "http://localhost:8080") else {
+    guard let url = URL(string: "http://localhost:8090") else {
         #expect(false, "Failed to build URL")
         return
     }
