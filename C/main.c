@@ -18,13 +18,12 @@ int main() {
     memset(&address, 0, sizeof(address));
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(8080);
+    address.sin_port = htons(8070);
 
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
         perror("bind");
         exit(EXIT_FAILURE);
     }
-
     if (listen(server_fd, 1) < 0) {
         perror("listen");
         exit(EXIT_FAILURE);
@@ -39,7 +38,7 @@ int main() {
         char buffer[1024] = {0};
         read(client_socket, buffer, sizeof(buffer) - 1);
 
-        const char *http_body = "{ \"Response\": \"Hello from C HTTP\" }";
+        const char *http_body = "{ \"message\": \"Hello from C HTTP\", \"response\": \"success\" }";
         char response[1024];
         int body_len = strlen(http_body);
         int len = snprintf(response, sizeof(response),
